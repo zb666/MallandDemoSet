@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TianliLiteMall</string>
+    <string name="title_home_primarypage">首页</string>
+    <string name="title_home_category">分类</string>
+    <string name="title_home_shopcart">购物车</string>
+    <string name="title_home_personal">个人</string>
 </resources>

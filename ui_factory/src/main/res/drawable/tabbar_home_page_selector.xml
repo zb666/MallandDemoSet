@@ -2,6 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android"
           android:enterFadeDuration="100"
           android:exitFadeDuration="100">
+    <!--exitFadeDuration|enterFadeDuration 会有淡入淡出的效果-->
     <item android:state_selected="true" android:drawable="@drawable/ic_menu_choice_pressed"/>
     <item android:state_selected="false" android:drawable="@drawable/ic_menu_choice_nor"/>
 </selector>
