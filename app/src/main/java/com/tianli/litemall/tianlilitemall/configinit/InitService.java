@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 
+import com.tianli.litemall.tianlilitemall.app.LiteMallApp;
+
 /**
  * Created by zhoubo30110 on 2018/8/1.
  */
@@ -29,5 +31,7 @@ public class InitService extends IntentService {
                 .withLeakCanary((Application) getApplicationContext())
                 .initTimer()
                 .configure();
+
+        LiteMallApp.isFinishInit = true;
     }
 }

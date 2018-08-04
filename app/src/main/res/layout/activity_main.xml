@@ -3,19 +3,128 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/ll_main"
     tools:context="com.tianli.litemall.tianlilitemall.main.MainActivity">
 
-    <TextView
-        android:id="@+id/text"
-        android:text="这是需要显示的内容"
+    <FrameLayout
+        android:id="@+id/fl_container"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:id="@+id/ll_home_page"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/DIMEN_2_5DP"
+            android:paddingTop="@dimen/DIMEN_5_0DP">
+
+            <ImageView
+                android:layout_width="@dimen/DIMEN_25_0DP"
+                android:layout_height="@dimen/DIMEN_25_0DP"
+                android:layout_gravity="center"
+                android:background="@drawable/tabbar_home_page_selector"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="首页"
+                android:textColor="@color/tabbar_home_page_text_selector"
+                android:textSize="@dimen/text_size11_0dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_home_classification"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/DIMEN_2_5DP"
+            android:paddingTop="@dimen/DIMEN_5_0DP">
+
+            <ImageView
+                android:layout_width="@dimen/DIMEN_25_0DP"
+                android:layout_height="@dimen/DIMEN_25_0DP"
+                android:layout_gravity="center"
+                android:background="@drawable/tabbar_classification_page_selector"
+                android:scaleType="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="分类"
+                android:textColor="@color/tabbar_home_page_text_selector"
+                android:textSize="@dimen/text_size11_0dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_home_cart"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/DIMEN_2_5DP"
+            android:paddingTop="@dimen/DIMEN_5_0DP">
+
+            <ImageView
+                android:layout_width="@dimen/DIMEN_25_0DP"
+                android:layout_height="@dimen/DIMEN_25_0DP"
+                android:layout_gravity="center"
+                android:background="@drawable/tabbar_cart_page_selector"
+                android:scaleType="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="购物车"
+                android:textColor="@color/tabbar_home_page_text_selector"
+                android:textSize="@dimen/text_size11_0dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_home_mine"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/DIMEN_2_5DP"
+            android:paddingTop="@dimen/DIMEN_5_0DP">
+
+            <ImageView
+                android:layout_width="@dimen/DIMEN_25_0DP"
+                android:layout_height="@dimen/DIMEN_25_0DP"
+                android:layout_gravity="center"
+                android:background="@drawable/tabbar_mine_page_selector"
+                android:scaleType="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="个人"
+                android:textColor="@color/tabbar_home_page_text_selector"
+                android:textSize="@dimen/text_size11_0dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </LinearLayout>

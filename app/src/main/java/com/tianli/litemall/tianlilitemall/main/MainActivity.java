@@ -1,18 +1,19 @@
 package com.tianli.litemall.tianlilitemall.main;
 
 import android.os.Message;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.tianli.litemall.common_library.utils.AppHandler;
 import com.tianli.litemall.common_library.utils.LogUtil;
-import com.tianli.litemall.common_library.utils.ToastUtil;
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.app.LiteMallApp;
 import com.tianli.litemall.tianlilitemall.base.contract.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
 
 /**
  * @Description:
@@ -26,8 +27,17 @@ import butterknife.OnClick;
  */
 public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPresenterImpl> implements IMainContract.IMainView {
 
-    @BindView(R.id.text)
-    TextView text;
+
+    @BindView(R.id.fl_container)
+    FrameLayout flContainer;
+    @BindView(R.id.ll_home_page)
+    LinearLayout llHomePage;
+    @BindView(R.id.ll_home_classification)
+    LinearLayout llHomeClassification;
+    @BindView(R.id.ll_home_cart)
+    LinearLayout llHomeCart;
+    @BindView(R.id.ll_home_mine)
+    LinearLayout llHomeMine;
     @BindView(R.id.ll_main)
     LinearLayout llMain;
 
@@ -61,8 +71,6 @@ public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPres
         if (LiteMallApp.isFinishInit) {
 
         }
-        text.setText("你好啊");
-
         //openNewActivity(OneDragNActivity.class);
     }
 
@@ -71,8 +79,21 @@ public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPres
         LogUtil.d(data);
     }
 
-    @OnClick(R.id.text)
-    public void onViewClicked() {
-        ToastUtil.showCustomToast(this);
+    @OnClick({R.id.fl_container, R.id.ll_home_page, R.id.ll_home_classification, R.id.ll_home_cart, R.id.ll_home_mine, R.id.ll_main})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.fl_container:
+                break;
+            case R.id.ll_home_page:
+                break;
+            case R.id.ll_home_classification:
+                break;
+            case R.id.ll_home_cart:
+                break;
+            case R.id.ll_home_mine:
+                break;
+            case R.id.ll_main:
+                break;
+        }
     }
 }
