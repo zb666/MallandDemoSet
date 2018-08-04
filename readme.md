@@ -1,4 +1,4 @@
-浙江天鹂网络科技有限公司
+浙江TLWL科技有限公司
 App Android项目
 初期想做成rxjava + contract + ARouter的形式
 项目准备参照 https://github.com/googlesamples/android-architecture/tree/todo-mvp-rxjava/
