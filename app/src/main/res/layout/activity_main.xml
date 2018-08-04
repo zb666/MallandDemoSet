@@ -13,7 +13,9 @@
         android:id="@+id/text"
         android:text="这是需要显示的内容"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/px_50"/>
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>

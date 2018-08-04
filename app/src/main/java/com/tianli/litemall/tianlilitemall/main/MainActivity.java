@@ -1,13 +1,18 @@
 package com.tianli.litemall.tianlilitemall.main;
 
 import android.os.Message;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.tianli.litemall.common_library.utils.AppHandler;
 import com.tianli.litemall.common_library.utils.LogUtil;
+import com.tianli.litemall.common_library.utils.ToastUtil;
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.app.LiteMallApp;
 import com.tianli.litemall.tianlilitemall.base.contract.BaseActivity;
-import com.tianli.litemall.tianlilitemall.vlayout.OneDragNActivity;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @Description:
@@ -20,6 +25,11 @@ import com.tianli.litemall.tianlilitemall.vlayout.OneDragNActivity;
  * @Date: </ModifyLog>
  */
 public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPresenterImpl> implements IMainContract.IMainView {
+
+    @BindView(R.id.text)
+    TextView text;
+    @BindView(R.id.ll_main)
+    LinearLayout llMain;
 
     @Override
     protected MainPresenterImpl createPresenter() {
@@ -51,7 +61,9 @@ public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPres
         if (LiteMallApp.isFinishInit) {
 
         }
-        openNewActivity(OneDragNActivity.class);
+        text.setText("你好啊");
+
+        //openNewActivity(OneDragNActivity.class);
     }
 
     @Override
@@ -59,4 +71,8 @@ public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPres
         LogUtil.d(data);
     }
 
+    @OnClick(R.id.text)
+    public void onViewClicked() {
+        ToastUtil.showCustomToast(this);
+    }
 }

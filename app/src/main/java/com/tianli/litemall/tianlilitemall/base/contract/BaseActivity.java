@@ -12,6 +12,9 @@ import com.jaeger.library.StatusBarUtil;
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.configinit.LiteMall;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by zhoubo30110 on 2018/8/1.
  */
@@ -22,6 +25,7 @@ public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends 
     private View mLoadingView;
     private FrameLayout mContentView;
     private View mErrorView;
+    protected Unbinder mParentBind;
 
     protected abstract P createPresenter();
 
@@ -43,6 +47,8 @@ public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends 
         LiteMall.getConfigurator().withActivity(this);
         //初始化布局
         setContentView(initLayout());
+        //APT生成findViewByID和绑定点击事件的操作
+        mParentBind = ButterKnife.bind(this);
         //沉浸式状态栏
         StatusBarUtil.setTransparent(this);
         //设置数据
@@ -98,6 +104,9 @@ public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends 
         super.onDestroy();
         if (mPresenter != null) {
             mPresenter.detachView();
+        }
+        if (mParentBind!=null){
+            mParentBind.unbind();
         }
     }
 }
