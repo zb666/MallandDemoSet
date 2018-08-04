@@ -27,6 +27,7 @@ import java.util.List;
  * Created by zhoubo30110 on 2018/8/3.
  */
 
+//一拖N的布局
 public class OneDragNActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -38,7 +39,7 @@ public class OneDragNActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onedrag);
-
+        //dev开发完毕
         recyclerView = (RecyclerView) findViewById(R.id.recycleview);
         LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
         linearLayoutHelper.setItemCount(4);
