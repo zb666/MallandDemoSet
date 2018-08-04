@@ -38,7 +38,7 @@ public class OneDragNActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onedrag);
-
+        //这是很牛逼的dev
         recyclerView = (RecyclerView) findViewById(R.id.recycleview);
         LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
         linearLayoutHelper.setItemCount(4);
