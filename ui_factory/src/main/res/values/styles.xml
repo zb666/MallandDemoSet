@@ -1,0 +1,159 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="ToolBarStyle" parent="Theme.AppCompat.NoActionBar">
+        <item name="actionMenuTextColor">@android:color/black</item>
+        <!-- 标题titile字体颜色 -->
+        <item name="android:textColorPrimary">#000</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!-- Actionbar color -->
+        <item name="colorPrimary">@color/main_color</item>
+        <!--Status bar color-->
+        <item name="colorPrimaryDark">@color/main_color</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--Window color-->
+        <item name="android:windowBackground">@color/bg_color</item>
+        <!-- toolbar的menu字体大小 -->
+        <item name="android:textSize">@dimen/textsize_32</item>
+    </style>
+
+
+    <style name="TabTextStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textSize">@dimen/textsize_30</item>
+    </style>
+
+    <style name="padding_t15_l30_b15_r30" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:paddingBottom">@dimen/px_15</item>
+        <item name="android:paddingTop">@dimen/px_15</item>
+        <item name="android:paddingLeft">@dimen/px_30</item>
+        <item name="android:paddingRight">@dimen/px_30</item>
+    </style>
+
+    <style name="padding_t35_l30_b35_r30" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:paddingBottom">@dimen/px_35</item>
+        <item name="android:paddingTop">@dimen/px_35</item>
+        <item name="android:paddingLeft">@dimen/px_30</item>
+        <item name="android:paddingRight">@dimen/px_30</item>
+    </style>
+
+    <style name="padding_t40_l30_b40_r30" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:paddingBottom">@dimen/px_40</item>
+        <item name="android:paddingTop">@dimen/px_40</item>
+        <item name="android:paddingLeft">@dimen/px_30</item>
+        <item name="android:paddingRight">@dimen/px_30</item>
+    </style>
+
+
+    <style name="margin_t15_l30_b15_r30" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:layout_marginBottom">@dimen/px_15</item>
+        <item name="android:layout_marginTop">@dimen/px_15</item>
+        <item name="android:layout_marginLeft">@dimen/px_30</item>
+        <item name="android:layout_marginRight">@dimen/px_30</item>
+    </style>
+
+    <style name="margin_l30_r30" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:layout_marginLeft">@dimen/px_30</item>
+        <item name="android:layout_marginRight">@dimen/px_30</item>
+    </style>
+
+    <style name="margin_t15_b15" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:layout_marginBottom">@dimen/px_15</item>
+        <item name="android:layout_marginTop">@dimen/px_15</item>
+    </style>
+
+    <style name="padding_l30_r30" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:paddingLeft">@dimen/px_30</item>
+        <item name="android:paddingRight">@dimen/px_30</item>
+    </style>
+
+    <style name="padding_t15_b15" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:paddingBottom">@dimen/px_15</item>
+        <item name="android:paddingTop">@dimen/px_15</item>
+    </style>
+
+    <style name="padding_t30_b30" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:paddingBottom">@dimen/px_30</item>
+        <item name="android:paddingTop">@dimen/px_30</item>
+    </style>
+
+    <style name="padding_t40_b40" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:paddingBottom">@dimen/px_40</item>
+        <item name="android:paddingTop">@dimen/px_40</item>
+    </style>
+
+
+    <!--在底部的dialog-->
+    <style name="BottomDialog" parent="@style/AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="CustomActionModeStyle" parent="Base.Widget.AppCompat.ActionMode">
+        <item name="background">@color/main_color</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="RegisterAndLogin_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否漂现在activity上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 去除黑色边框的关键设置项 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 屏幕背景是否变暗 -->
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+    <!-- 欢迎界面主题 -->
+    <style name="WelcomeEntranceActionBarTheme" parent="AppTheme.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="surecancel_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否漂现在activity上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 去除黑色边框的关键设置项 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 屏幕背景是否变暗 -->
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+
+    <style name="custom_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否漂现在activity上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 去除黑色边框的关键设置项 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 屏幕背景是否变暗 -->
+        <item name="android:backgroundDimAmount">0.5</item>
+    </style>
+
+</resources>

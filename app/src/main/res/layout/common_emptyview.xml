@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/a15104"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_common"
+            android:text="正在加载中"
+            android:gravity="center"
+            android:textSize="@dimen/textsize_18"
+            android:minHeight="@dimen/px_50"
+            android:drawableBottom="@mipmap/ic_launcher"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+</LinearLayout>
