@@ -94,7 +94,7 @@ public class OneDragNActivity extends AppCompatActivity {
 
 
         DelegateAdapter delegateAdapter = new DelegateAdapter(virtualLayoutManager);
-
+        //test
         //绑定到适配器上
         mAdapters.add(stickyAdapter);
         mAdapters.add(lineRecycleAdapter);
