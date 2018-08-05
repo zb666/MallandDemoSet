@@ -4,6 +4,8 @@ import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.base.contract.BasePresenterImpl;
 import com.tianli.litemall.tianlilitemall.fragment.BaseFragmentImpl;
 
+import okhttp3.OkHttpClient;
+
 /**
  * Created by zhoubo30110 on 2018/8/5.
  */
@@ -21,6 +23,8 @@ public class TwoFragment extends BaseFragmentImpl {
 
     @Override
     public void initView() {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .build();
 
     }
 

@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/TianliLiteMall.iml" filepath="$PROJECT_DIR$/TianliLiteMall.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/common_library/common_library.iml" filepath="$PROJECT_DIR$/common_library/common_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moudle_a/moudle_a.iml" filepath="$PROJECT_DIR$/moudle_a/moudle_a.iml" />
+      <module fileurl="file://$PROJECT_DIR$/moudle_home/moudle_home.iml" filepath="$PROJECT_DIR$/moudle_home/moudle_home.iml" />
       <module fileurl="file://$PROJECT_DIR$/ui_factory/ui_factory.iml" filepath="$PROJECT_DIR$/ui_factory/ui_factory.iml" />
     </modules>
   </component>

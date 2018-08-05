@@ -1,1 +1,1 @@
-include ':app', ':common_library', ':ui_factory'
+include ':app', ':common_library', ':ui_factory', ':moudle_home', ':moudle_a'

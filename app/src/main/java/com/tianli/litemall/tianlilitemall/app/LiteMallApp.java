@@ -6,6 +6,8 @@ import android.content.Intent;
 
 import com.bumptech.glide.Glide;
 import com.tianli.litemall.tianlilitemall.configinit.InitService;
+import com.tianli.litemall.tianlilitemall.netimpl.NetRequest;
+import com.tianli.litemall.tianlilitemall.netstrategy.OkhttpStrategy;
 
 /**
  * Created by zhoubo30110 on 2018/8/1.
@@ -19,12 +21,14 @@ public class LiteMallApp extends Application {
 
     private Context mContext;//上下文
 
+    private static final NetRequest NET_REQUEST = new NetRequest();
+
     @Override
     public void onCreate() {
         super.onCreate();
         InitService.startService(this);
         mContext = getApplicationContext();
-
+        NET_REQUEST.setNetProxy(new OkhttpStrategy());
     }
 
     public synchronized static LiteMallApp getInstance() {
@@ -37,7 +41,7 @@ public class LiteMallApp extends Application {
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
-        if (level == TRIM_MEMORY_UI_HIDDEN){
+        if (level == TRIM_MEMORY_UI_HIDDEN) {
             Glide.get(this).clearMemory();
         }
         Glide.get(this).onTrimMemory(level);
@@ -58,4 +62,6 @@ public class LiteMallApp extends Application {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         mContext.startActivity(intent);
     }
+
+
 }
