@@ -2,7 +2,7 @@ package com.tianli.litemall.tianlilitemall.netapi;
 
 import com.tianli.litemall.tianlilitemall.base.BaseData;
 
-import io.reactivex.Observable;
+import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -18,6 +18,6 @@ import retrofit2.http.POST;
 public interface IApiNet {
    //刷新token
     @FormUrlEncoded
-    @POST("auth/regCaptcha")
-    Observable<BaseData<String>> getMobileRegCapCode(@Field("mobile") String mobile);
+    @POST("member/name/check")
+    Call<BaseData<String>> getMobileRegCapCode(@Field("mobile") String mobile);
 }

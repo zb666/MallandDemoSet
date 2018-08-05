@@ -8,6 +8,7 @@ import android.widget.Button;
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.base.contract.BasePresenterImpl;
 import com.tianli.litemall.tianlilitemall.fragment.BaseFragmentImpl;
+import com.tianli.litemall.tianlilitemall.vlayout.OneDragNActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -63,7 +64,7 @@ public class OneFragmeng extends BaseFragmentImpl {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.textView:
-                requestVerifyCode();
+                startActivity(OneDragNActivity.class);
                 break;
             case R.id.button:
                 break;
@@ -72,10 +73,6 @@ public class OneFragmeng extends BaseFragmentImpl {
             case R.id.button3:
                 break;
         }
-    }
-
-    private void requestVerifyCode() {
-
     }
 
 }
