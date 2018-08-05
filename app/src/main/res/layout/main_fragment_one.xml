@@ -27,4 +27,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="账号密码重置"/>
+
+    <ImageView
+        android:id="@+id/image_view_album_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

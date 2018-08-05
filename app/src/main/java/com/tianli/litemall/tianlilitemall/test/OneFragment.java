@@ -9,11 +9,13 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.base.contract.BasePresenterImpl;
 import com.tianli.litemall.tianlilitemall.fragment.BaseFragmentImpl;
+import com.tianli.litemall.tianlilitemall.imageutils.ImageLoaderUtils;
 import com.tianli.litemall.tianlilitemall.vlayout.OneDragNActivity;
 
 import java.util.concurrent.TimeUnit;
@@ -30,7 +32,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by zhoubo30110 on 2018/8/5.
  */
 
-public class OneFragmeng extends BaseFragmentImpl {
+public class OneFragment extends BaseFragmentImpl {
     @BindView(R.id.textView)
     Button textView;
     @BindView(R.id.button)
@@ -42,6 +44,9 @@ public class OneFragmeng extends BaseFragmentImpl {
     Unbinder unbinder;
 
     int REQUEST_CODE_IMAGE = 0x111;
+    @BindView(R.id.image_view_album_image)
+    ImageView imageViewAlbumImage;
+    Unbinder unbinder1;
 
     @Override
     protected BasePresenterImpl createPresenter() {
@@ -85,7 +90,7 @@ public class OneFragmeng extends BaseFragmentImpl {
                             public void accept(@NonNull Boolean aBoolean) throws Exception {
                                 Intent i = new Intent(
                                         Intent.ACTION_PICK,
-                                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                                 //设定结果返回
                                 startActivity(i);
                             }
@@ -93,6 +98,7 @@ public class OneFragmeng extends BaseFragmentImpl {
 
                 break;
             case R.id.button2:
+                ImageLoaderUtils.getInstance().showImage(imageViewAlbumImage,"https://img3.doubanio.com//view//celebrity//s_ratio_celebrity//public//p45590.webp");
                 break;
             case R.id.button3:
                 break;
@@ -112,5 +118,9 @@ public class OneFragmeng extends BaseFragmentImpl {
         }
     }
 
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder1.unbind();
+    }
 }
