@@ -24,7 +24,7 @@ import retrofit2.adapter.rxjava2.Result;
 public class RxRequestManager {
 
     //为了用fastJson而进行这样的转化
-    static <T> Observable<T> testResponse(final Observable<Result<String>> observable, final Class<T> clazz) {
+   public static <T> Observable<T> testResponse(final Observable<Result<String>> observable, final Class<T> clazz) {
         return observable
                 .compose(new ObservableTransformer<Result<String>, T>() {
                     @Override public ObservableSource<T> apply(@NonNull Observable<Result<String>> upstream) {

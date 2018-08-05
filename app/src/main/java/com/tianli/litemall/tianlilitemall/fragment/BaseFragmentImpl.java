@@ -34,10 +34,10 @@ public abstract class BaseFragmentImpl<P extends BasePresenterImpl, E extends IB
     //界面是否已经对用户开始可见
     protected boolean isVisible;
     //界面初始化是否已经完毕
-    private boolean isPrepared;
+    protected boolean isPrepared;
     //是否为第一次加载
-    private boolean isFirst = true;
-    private Unbinder unbinder = null;
+    protected boolean isFirst = true;
+    protected Unbinder unbinder = null;
 
     @Override
     public void onAttach(Context context) {

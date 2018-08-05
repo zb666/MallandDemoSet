@@ -63,5 +63,7 @@ dependencies {
     compile 'com.trello:rxlifecycle-components:0.6.1'
     //底部导航栏
     compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.3'
+    //gson
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     testCompile 'junit:junit:4.12'
 }
