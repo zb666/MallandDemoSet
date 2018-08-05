@@ -33,6 +33,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".vlayout.OneDragNActivity"/>
+        <activity android:name=".activity.OtherActivity"/>
 
         <service android:name=".configinit.InitService"/>
     </application>

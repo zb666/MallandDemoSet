@@ -19,7 +19,7 @@ public class InitService extends IntentService {
         context.startService(intent);
     }
 
-    public InitService(String name) {
+    public InitService() {
         super("InitService");
     }
 

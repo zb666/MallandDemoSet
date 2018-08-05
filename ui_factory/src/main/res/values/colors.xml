@@ -47,4 +47,7 @@
     <color name="color_de">#dedede</color>
     <color name="color_main_txt">#1B1B1F</color>
     <color name="multiple_image_select_primaryDark">#F76395</color>
+
+    <color name="tab_checked">#ED6A2C</color>
+    <color name="tab_unchecked">#757575</color>
 </resources>

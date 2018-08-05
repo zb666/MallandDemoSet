@@ -15,12 +15,14 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
+    <!--app:itemBackground="@null" 取消水波纹特性-->
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_NavigationView"
         android:background="?android:attr/windowBackground"
         app:menu="@menu/navigation"
-        app:itemTextColor="@color/color_bg9f1522"
-        app:itemIconTint="@color/color_bg9f1522"
+        app:itemBackground="@null"
+        app:itemIconTint="@drawable/bottom_navigation_selector"
+        app:itemTextColor="@drawable/bottom_navigation_selector"
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>

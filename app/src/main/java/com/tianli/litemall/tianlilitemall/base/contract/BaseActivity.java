@@ -42,7 +42,9 @@ public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends 
         //创建P层
         mPresenter = createPresenter();
         //创建View和P层的连接
-        mPresenter.attachView((V) this);
+        if (mPresenter!=null) {
+            mPresenter.attachView((V) this);
+        }
         //管理Activity
         LiteMall.getConfigurator().withActivity(this);
         //初始化布局

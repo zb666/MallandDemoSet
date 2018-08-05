@@ -15,6 +15,7 @@ import com.tianli.litemall.tianlilitemall.base.contract.IBaseContract;
 public interface IMainContract {
 
     interface IMainView extends IBaseContract.IBaseView {
+
         void showMainData(String data);
     }
 

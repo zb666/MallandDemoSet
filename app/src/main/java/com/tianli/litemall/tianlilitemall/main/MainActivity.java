@@ -1,11 +1,14 @@
 package com.tianli.litemall.tianlilitemall.main;
 
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.tianli.litemall.common_library.utils.AppHandler;
+import com.tianli.litemall.common_library.utils.BottomNavigationViewHelper;
 import com.tianli.litemall.common_library.utils.LogUtil;
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.app.LiteMallApp;
@@ -24,15 +27,15 @@ import butterknife.BindView;
  * @Author:
  * @Date: </ModifyLog>
  */
-public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPresenterImpl> implements IMainContract.IMainView {
+public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPresenterImpl> implements IMainContract.IMainView, BottomNavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.fl_container)
     FrameLayout flContainer;
 
     @BindView(R.id.ll_main)
     LinearLayout llMain;
-
-    BottomNavigationView navigation;
+    @BindView(R.id.bottom_NavigationView)
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected MainPresenterImpl createPresenter() {
@@ -60,19 +63,24 @@ public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPres
     protected void initViewData() {
         super.initViewData();
         mPresenter.startTask("XMM");
-        appHandler.sendEmptyMessage(0);
-        if (LiteMallApp.isFinishInit) {
-            startShowDisplay();
-        }
-
+        startShowDisplay();
+        BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
     }
 
+
     private void startShowDisplay() {
+
     }
 
     @Override
     public void showMainData(String data) {
         LogUtil.d(data);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        LogUtil.d(item.getItemId() + "" + item.hashCode());
+        return false;
     }
 
 }
