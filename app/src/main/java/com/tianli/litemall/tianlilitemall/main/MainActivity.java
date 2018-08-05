@@ -77,6 +77,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPres
         startShowDisplay();
         //取消导航栏切换的功能
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
     }
 
 
