@@ -3,14 +3,15 @@ package com.tianli.litemall.tianlilitemall.base.contract;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.jaeger.library.StatusBarUtil;
+import com.tianli.litemall.common_library.utils.RxManager;
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.configinit.LiteMall;
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -19,13 +20,15 @@ import butterknife.Unbinder;
  * Created by zhoubo30110 on 2018/8/1.
  */
 
-public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends IBaseContract.IBasePresenter<V>> extends AppCompatActivity implements IBaseContract.IBaseView {
+public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends IBaseContract.IBasePresenter<V>> extends RxAppCompatActivity implements IBaseContract.IBaseView {
 
     protected P mPresenter;
     private View mLoadingView;
     private FrameLayout mContentView;
     private View mErrorView;
     protected Unbinder mParentBind;
+
+    protected RxManager mRxmanager;
 
     protected abstract P createPresenter();
 
@@ -45,6 +48,7 @@ public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends 
         if (mPresenter!=null) {
             mPresenter.attachView((V) this);
         }
+        mRxmanager = new RxManager();
         //管理Activity
         LiteMall.getConfigurator().withActivity(this);
         //初始化布局
@@ -109,6 +113,10 @@ public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends 
         }
         if (mParentBind!=null){
             mParentBind.unbind();
+        }
+        if (mRxmanager!=null){
+            //接触订阅
+            mRxmanager.clear();
         }
     }
 }
