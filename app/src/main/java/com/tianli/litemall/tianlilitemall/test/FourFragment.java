@@ -1,14 +1,21 @@
 package com.tianli.litemall.tianlilitemall.test;
 
+import android.widget.ViewFlipper;
+
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.base.contract.BasePresenterImpl;
 import com.tianli.litemall.tianlilitemall.fragment.BaseFragmentImpl;
+
+import butterknife.BindView;
 
 /**
  * Created by zhoubo30110 on 2018/8/5.
  */
 
 public class FourFragment extends BaseFragmentImpl {
+    @BindView(R.id.vl_main_four)
+    ViewFlipper vlMainFour;
+
     @Override
     protected BasePresenterImpl createPresenter() {
         return null;
@@ -26,6 +33,9 @@ public class FourFragment extends BaseFragmentImpl {
 
     @Override
     public void initData() {
-
+        vlMainFour.startFlipping();
+        vlMainFour.setFlipInterval(3000);
     }
+
+
 }

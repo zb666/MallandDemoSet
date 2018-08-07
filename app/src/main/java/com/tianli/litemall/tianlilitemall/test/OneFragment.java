@@ -46,7 +46,6 @@ public class OneFragment extends BaseFragmentImpl {
     int REQUEST_CODE_IMAGE = 0x111;
     @BindView(R.id.image_view_album_image)
     ImageView imageViewAlbumImage;
-    Unbinder unbinder1;
 
     @Override
     protected BasePresenterImpl createPresenter() {
@@ -70,7 +69,7 @@ public class OneFragment extends BaseFragmentImpl {
 
     @Override
     public void initData() {
-
+        //这里进行数据的请求操作
     }
 
     @OnClick({R.id.textView, R.id.button, R.id.button2, R.id.button3})
@@ -118,9 +117,4 @@ public class OneFragment extends BaseFragmentImpl {
         }
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder1.unbind();
-    }
 }

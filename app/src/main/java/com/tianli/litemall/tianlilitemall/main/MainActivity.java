@@ -111,16 +111,16 @@ public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPres
         flContainer.setCurrentItem(1);
         switch (itemId) {
             case R.id.navigation_home:
-                flContainer.setCurrentItem(0);
+                flContainer.setCurrentItem(0,false);
                 break;
             case R.id.navigation_dashboard:
-                flContainer.setCurrentItem(1);
+                flContainer.setCurrentItem(1,false);
                 break;
             case R.id.navigation_notifications:
-                flContainer.setCurrentItem(2);
+                flContainer.setCurrentItem(2,false);
                 break;
             case R.id.navigation_person:
-                flContainer.setCurrentItem(3);
+                flContainer.setCurrentItem(3,false);
                 break;
             default:
                 break;
