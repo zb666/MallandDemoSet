@@ -15,7 +15,6 @@ import com.tianli.litemall.common_library.utils.LogUtil;
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.app.LiteMallApp;
 import com.tianli.litemall.tianlilitemall.base.contract.BaseActivity;
-import com.tianli.litemall.tianlilitemall.fragment.BaseFragmentImpl;
 import com.tianli.litemall.tianlilitemall.test.FourFragment;
 import com.tianli.litemall.tianlilitemall.test.OneFragment;
 import com.tianli.litemall.tianlilitemall.test.ThreeFragment;
@@ -82,7 +81,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPres
 
 
     private void startShowDisplay() {
-        final List<BaseFragmentImpl> list = new ArrayList<>();
+        final List<Fragment> list = new ArrayList<>();
         list.add(new OneFragment());
         list.add(new ThreeFragment());
         list.add(new TwoFragment());

@@ -85,6 +85,7 @@ public abstract class BaseFragmentImpl<P extends BasePresenterImpl, E extends IB
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //Activity界面已经创建完毕了
         isPrepared = true;
         lazyLoad();
     }
@@ -110,6 +111,7 @@ public abstract class BaseFragmentImpl<P extends BasePresenterImpl, E extends IB
     }
 
     protected void lazyLoad() {
+        //对用户开始可见 并且已经准备好了 View已经初始化完毕
         if (!isPrepared || !isVisible || !isFirst) {
             return;
         }
