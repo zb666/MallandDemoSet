@@ -18,6 +18,6 @@ import retrofit2.http.POST;
 public interface IApiNet {
    //刷新token
     @FormUrlEncoded
-    @POST("member/name/check")
+    @POST("auth/regCaptcha")
     Call<BaseData<String>> getMobileRegCapCode(@Field("mobile") String mobile);
 }

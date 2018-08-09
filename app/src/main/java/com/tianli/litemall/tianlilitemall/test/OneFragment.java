@@ -23,7 +23,6 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 
@@ -42,7 +41,8 @@ public class OneFragment extends BaseFragmentImpl {
     Button button2;
     @BindView(R.id.button3)
     Button button3;
-    Unbinder unbinder;
+    @BindView(R.id.bt_start_request)
+    Button btStartRequest;
 
     int REQUEST_CODE_IMAGE = 0x111;
     @BindView(R.id.image_view_album_image)
@@ -76,7 +76,7 @@ public class OneFragment extends BaseFragmentImpl {
         //这里进行数据的请求操作
     }
 
-    @OnClick({R.id.textView, R.id.button, R.id.button2, R.id.button3})
+    @OnClick({R.id.textView, R.id.button, R.id.button2, R.id.button3,R.id.bt_start_request})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.textView:
@@ -106,6 +106,11 @@ public class OneFragment extends BaseFragmentImpl {
                 break;
             case R.id.button3:
                 startActivity(OtherActivity.class);
+                break;
+            case R.id.bt_start_request:
+
+                break;
+            default:
                 break;
         }
     }

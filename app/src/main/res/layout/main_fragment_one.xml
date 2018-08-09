@@ -28,6 +28,12 @@
         android:layout_height="wrap_content"
         android:text="Loading界面测试"/>
 
+    <Button
+        android:id="@+id/bt_start_request"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开始网络请求"/>
+
     <ImageView
         android:id="@+id/image_view_album_image"
         android:layout_width="match_parent"

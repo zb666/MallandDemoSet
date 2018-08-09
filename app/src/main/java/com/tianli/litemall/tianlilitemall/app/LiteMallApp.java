@@ -6,7 +6,7 @@ import android.content.Intent;
 
 import com.bumptech.glide.Glide;
 import com.tianli.litemall.tianlilitemall.configinit.InitService;
-import com.tianli.litemall.tianlilitemall.imageutils.GlideStrategy;
+import com.tianli.litemall.tianlilitemall.imageutils.IamgeUtilFactorty;
 import com.tianli.litemall.tianlilitemall.imageutils.ImageLoaderUtils;
 import com.tianli.litemall.tianlilitemall.netimpl.NetRequest;
 import com.tianli.litemall.tianlilitemall.netstrategy.OkhttpStrategy;
@@ -29,7 +29,9 @@ public class LiteMallApp extends Application {
     public void onCreate() {
         super.onCreate();
         InitService.startService(this);
-        ImageLoaderUtils.getInstance().setImageLoaderStrategy(new GlideStrategy());
+        //初始化该对象
+        ImageLoaderUtils.getInstance().setImageLoaderStrategy(IamgeUtilFactorty.getIamgeUtilStrategy());
+
         mContext = getApplicationContext();
         NET_REQUEST.setNetProxy(new OkhttpStrategy());
     }
