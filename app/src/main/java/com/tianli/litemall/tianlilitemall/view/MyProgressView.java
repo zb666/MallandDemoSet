@@ -11,6 +11,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.tianli.litemall.common_library.utils.DensityUtil;
+
 /**
  * Created by zhoubo30110 on 2018/8/9.
  */
@@ -42,6 +44,12 @@ public class MyProgressView extends View {
         mDashPaint.setColor(Color.DKGRAY);
         mDashPaint.setStrokeWidth(2);
 
+
+        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setColor(Color.DKGRAY);
+        mPaint.setStrokeWidth(2);
+
         mDashPath = new Path();
         mDashPath.moveTo(30, 30);
         mDashPath.lineTo(30, 100);
@@ -58,6 +66,8 @@ public class MyProgressView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        //画圆
+        canvas.drawCircle(DensityUtil.dip2px(getContext(),50),DensityUtil.dip2px(getContext(),50),DensityUtil.dip2px(getContext(),10),mPaint);
         canvas.drawPath(mDashPath, mDashPaint);
 
     }

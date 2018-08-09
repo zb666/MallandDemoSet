@@ -8,10 +8,10 @@ import android.widget.ImageView;
 
 public final class ImageLoaderUtils implements ImageLoader {
 
-    private ImageLoaderStrategy imageLoaderStrategy;
+    private ImageLoaderStrategy mImageLoaderStrategy;
 
     private ImageLoaderUtils() {
-        imageLoaderStrategy = new GlideStrategy();
+
     }
 
     private static final class HOLDER {
@@ -22,11 +22,15 @@ public final class ImageLoaderUtils implements ImageLoader {
         return HOLDER.INSTANCE;
     }
 
+    public void setImageLoaderStrategy(ImageLoaderStrategy imageLoaderStrategy){
+        this.mImageLoaderStrategy = imageLoaderStrategy;
+    }
+
     @Override
     public void showImage(ImageView imageView, String targetUrl) {
         //具体的抽象行为，由具体的策略类来进行实现
-        if (imageLoaderStrategy == null)
+        if (mImageLoaderStrategy == null)
             throw new NullPointerException("please give the image strategy before you invoke this method-=>showImage(ImageView imageView, String targetUrl)");
-        imageLoaderStrategy.showImage(imageView, targetUrl);
+        mImageLoaderStrategy.showImage(imageView, targetUrl);
     }
 }
