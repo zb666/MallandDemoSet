@@ -32,4 +32,10 @@
         android:id="@+id/image_view_album_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <com.tianli.litemall.tianlilitemall.view.MyProgressView
+        android:id="@+id/progressView"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
 </LinearLayout>

@@ -16,7 +16,7 @@ import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.activity.OtherActivity;
 import com.tianli.litemall.tianlilitemall.base.contract.BasePresenterImpl;
 import com.tianli.litemall.tianlilitemall.fragment.BaseFragmentImpl;
-import com.tianli.litemall.tianlilitemall.imageutils.ImageLoaderUtils;
+import com.tianli.litemall.tianlilitemall.view.MyProgressView;
 import com.tianli.litemall.tianlilitemall.vlayout.OneDragNActivity;
 
 import java.util.concurrent.TimeUnit;
@@ -47,6 +47,9 @@ public class OneFragment extends BaseFragmentImpl {
     int REQUEST_CODE_IMAGE = 0x111;
     @BindView(R.id.image_view_album_image)
     ImageView imageViewAlbumImage;
+
+    @BindView(R.id.progressView)
+    MyProgressView progressView;
 
     @Override
     protected BasePresenterImpl createPresenter() {
@@ -98,7 +101,8 @@ public class OneFragment extends BaseFragmentImpl {
 
                 break;
             case R.id.button2:
-                ImageLoaderUtils.getInstance().showImage(imageViewAlbumImage,"https://img3.doubanio.com//view//celebrity//s_ratio_celebrity//public//p45590.webp");
+                //ImageLoaderUtils.getInstance().showImage(imageViewAlbumImage,"https://img3.doubanio.com//view//celebrity//s_ratio_celebrity//public//p45590.webp");
+                progressView.setPayStatus(1);
                 break;
             case R.id.button3:
                 startActivity(OtherActivity.class);
