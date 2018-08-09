@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.tianli.litemall.tianlilitemall.R;
+import com.tianli.litemall.tianlilitemall.activity.OtherActivity;
 import com.tianli.litemall.tianlilitemall.base.contract.BasePresenterImpl;
 import com.tianli.litemall.tianlilitemall.fragment.BaseFragmentImpl;
 import com.tianli.litemall.tianlilitemall.imageutils.ImageLoaderUtils;
@@ -100,6 +101,7 @@ public class OneFragment extends BaseFragmentImpl {
                 ImageLoaderUtils.getInstance().showImage(imageViewAlbumImage,"https://img3.doubanio.com//view//celebrity//s_ratio_celebrity//public//p45590.webp");
                 break;
             case R.id.button3:
+                startActivity(OtherActivity.class);
                 break;
         }
     }

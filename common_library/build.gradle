@@ -67,6 +67,8 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     //aop aspect 切面注入
     compile 'org.aspectj:aspectjrt:1.8.9'
+    //loadingView
+    compile 'com.ycjiang:loadviewhelper:1.1.0'
 
     testCompile 'junit:junit:4.12'
 }

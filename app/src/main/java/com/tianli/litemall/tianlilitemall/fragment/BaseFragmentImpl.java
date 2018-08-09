@@ -39,6 +39,10 @@ public abstract class BaseFragmentImpl<P extends BasePresenterImpl, E extends IB
     protected boolean isFirst = true;
     protected Unbinder unbinder = null;
 
+    protected static int SUCCESS_VIEW = 0;
+    protected static int FAIL_VIEW = 1;
+    protected static int EMPTY_VIEW = 2;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

@@ -43,14 +43,14 @@ public class MyProgressView extends View {
         mDashPaint.setStrokeWidth(2);
 
         mDashPath = new Path();
-        mDashPath.moveTo(30,30);
-        mDashPath.lineTo(30,100);
-        PathEffect pathEffect = new DashPathEffect(new float[]{5,5,5,5},1);
+        mDashPath.moveTo(30, 30);
+        mDashPath.lineTo(30, 100);
+        PathEffect pathEffect = new DashPathEffect(new float[]{5, 5, 5, 5}, 1);
         mDashPaint.setPathEffect(pathEffect);
 
     }
 
-    public void setPath(Path path){
+    public void setPath(Path path) {
         mDashPath.addPath(path);
         postInvalidate();
     }
@@ -58,7 +58,7 @@ public class MyProgressView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawPath(mDashPath,mDashPaint);
+        canvas.drawPath(mDashPath, mDashPaint);
 
     }
 }

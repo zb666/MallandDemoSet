@@ -11,6 +11,7 @@ import com.jaeger.library.StatusBarUtil;
 import com.tianli.litemall.common_library.utils.RxManager;
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.configinit.LiteMall;
+import com.tianli.litemall.tianlilitemall.view.CommonStateLayout;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
@@ -29,6 +30,7 @@ public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends 
     protected Unbinder mParentBind;
 
     protected RxManager mRxmanager;
+    protected CommonStateLayout mCommonView;
 
     protected abstract P createPresenter();
 
@@ -52,7 +54,10 @@ public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends 
         //管理Activity
         LiteMall.getConfigurator().withActivity(this);
         //初始化布局
-        setContentView(initLayout());
+        mCommonView = new CommonStateLayout(this);
+        mCommonView.bindSuccessView(initLayout());
+        //绑定公共界面到该视图上
+        setContentView(mCommonView);
         //APT生成findViewByID和绑定点击事件的操作
         mParentBind = ButterKnife.bind(this);
         //沉浸式状态栏
@@ -63,8 +68,7 @@ public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends 
 
     //初始化数据
     protected void initViewData() {
-        FrameLayout mContentView = (FrameLayout) getWindow().getDecorView().findViewById(android.R.id.content);
-       // mContentView.addView(View.inflate(this, R.layout.custom_empty_view, null));
+
     }
 
     protected abstract int initLayout();
