@@ -38,7 +38,6 @@ import butterknife.BindView;
  */
 public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPresenterImpl> implements IMainContract.IMainView, BottomNavigationView.OnNavigationItemSelectedListener {
 
-
     @BindView(R.id.ll_main)
     LinearLayout llMain;
     @BindView(R.id.bottom_NavigationView)
@@ -56,9 +55,11 @@ public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPres
         public void handleMessage(Message msg) {
             if (LiteMallApp.isFinishInit) {
                 LogUtil.d("初始化完成");
+                mCommonView.showSuccessView();
             } else {
                 //0.1秒做一寸轮训检查是否初始化完毕
-                sendEmptyMessageDelayed(0, 100);
+                sendEmptyMessageDelayed(0, 200);
+                mCommonView.showSuccessView();
             }
         }
     };
@@ -71,11 +72,15 @@ public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPres
     @Override
     protected void initViewData() {
         super.initViewData();
+        mCommonView.showLoadingView();
         mPresenter.startTask("XMM");
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         startShowDisplay();
         //取消导航栏切换的功能
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        appHandler.sendEmptyMessage(0);
+
+
 
     }
 

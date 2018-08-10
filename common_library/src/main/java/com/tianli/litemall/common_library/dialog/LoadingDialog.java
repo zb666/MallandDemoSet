@@ -1,9 +1,10 @@
 package com.tianli.litemall.common_library.dialog;
 
-import android.app.Dialog;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -11,12 +12,12 @@ import android.widget.TextView;
 import com.tianli.litemall.common_library.R;
 
 
-public class LoadingDialog extends Dialog {
+public class LoadingDialog extends AlertDialog {
     TextView tv_msg;
     ProgressBar av_anim;
     String txt;
     public LoadingDialog(Context context, String txt) {
-        super(context, R.style.custom_dialog);
+        super(context, R.style.dialog_base);
         this.txt=txt;
     }
 
@@ -24,7 +25,8 @@ public class LoadingDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_loading_view);
-        setCanceledOnTouchOutside(false);
+        setCanceledOnTouchOutside(true);
+        getWindow().setGravity(Gravity.CENTER);
         initView();
     }
 

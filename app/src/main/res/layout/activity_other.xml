@@ -7,9 +7,28 @@
 
    <com.tianli.litemall.tianlilitemall.view.MyProgressView
         android:id="@+id/progressView"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:isClose="false"
         app:sex="man"/>
+
+   <Button
+       android:id="@+id/button4"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="显示对话框"/>
+
+   <Button
+       android:id="@+id/button5"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="隐藏对话框"/>
+
+   <Button
+       android:id="@+id/bt_request"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="开始请求数据"/>
 
 </LinearLayout>

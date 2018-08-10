@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.jaeger.library.StatusBarUtil;
+import com.tianli.litemall.common_library.dialog.LoadingDialog;
 import com.tianli.litemall.common_library.utils.RxManager;
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.configinit.LiteMall;
@@ -31,6 +32,7 @@ public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends 
 
     protected RxManager mRxmanager;
     protected CommonStateLayout mCommonView;
+    private LoadingDialog mLoadingDialog;
 
     protected abstract P createPresenter();
 
@@ -47,7 +49,7 @@ public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends 
         //创建P层
         mPresenter = createPresenter();
         //创建View和P层的连接
-        if (mPresenter!=null) {
+        if (mPresenter != null) {
             mPresenter.attachView((V) this);
         }
         mRxmanager = new RxManager();
@@ -115,12 +117,32 @@ public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends 
         if (mPresenter != null) {
             mPresenter.detachView();
         }
-        if (mParentBind!=null){
+        if (mParentBind != null) {
             mParentBind.unbind();
         }
-        if (mRxmanager!=null){
+        if (mRxmanager != null) {
             //接触订阅
             mRxmanager.clear();
         }
+        //取消Dialog的显示
+        cancleProgressDialog();
     }
+
+    public void showProgressDialog() {
+        if (mLoadingDialog == null) {
+            mLoadingDialog = new LoadingDialog(this, "客官请稍等");
+        }
+        mLoadingDialog.setCancelable(true);
+        if (!mLoadingDialog.isShowing()) {
+            mLoadingDialog.show();
+        }
+    }
+
+    public void cancleProgressDialog() {
+        if (mLoadingDialog != null && mLoadingDialog.isShowing()) {
+            mLoadingDialog.dismiss();
+        }
+    }
+
+
 }

@@ -6,7 +6,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
 
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cache.CacheMode;
 import com.squareup.leakcanary.LeakCanary;
+import com.tianli.litemall.tianlilitemall.imageutils.ImageLoaderStrategy;
+import com.tianli.litemall.tianlilitemall.imageutils.ImageLoaderUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,6 +59,13 @@ public final class Configurator {
         return this;
     }
 
+    final Configurator initOkgo(Application application){
+        OkGo.getInstance().init(application)
+                .setRetryCount(3)
+                .setCacheMode(CacheMode.NO_CACHE);
+        return this;
+    }
+
      final Configurator withLoaderDelayed(long delayed) {
         LATTE_CONFIGS.put(ConfigKeys.LOADER_DELAYED, delayed);
         return this;
@@ -62,6 +73,11 @@ public final class Configurator {
 
      final Configurator withLeakCanary(@NonNull Application application){
         LeakCanary.install(application);
+        return this;
+    }
+
+    public final Configurator withImageUtilInit(ImageLoaderStrategy imageLoaderStrategy){
+        ImageLoaderUtils.getInstance().setImageLoaderStrategy(imageLoaderStrategy);
         return this;
     }
 

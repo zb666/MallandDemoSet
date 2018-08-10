@@ -10,12 +10,17 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.tianli.litemall.common_library.utils.LogUtil;
+import com.tianli.litemall.common_library.utils.OkhttpFactory;
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.activity.OtherActivity;
 import com.tianli.litemall.tianlilitemall.base.contract.BasePresenterImpl;
 import com.tianli.litemall.tianlilitemall.fragment.BaseFragmentImpl;
+import com.tianli.litemall.tianlilitemall.model.DouBanBean;
+import com.tianli.litemall.tianlilitemall.netapi.IApiNet;
 import com.tianli.litemall.tianlilitemall.view.MyProgressView;
 import com.tianli.litemall.tianlilitemall.vlayout.OneDragNActivity;
 
@@ -25,8 +30,14 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.app.Activity.RESULT_OK;
+import static com.tianli.litemall.tianlilitemall.configinit.LiteMall.getApplicationContext;
 
 /**
  * Created by zhoubo30110 on 2018/8/5.
@@ -43,6 +54,9 @@ public class OneFragment extends BaseFragmentImpl {
     Button button3;
     @BindView(R.id.bt_start_request)
     Button btStartRequest;
+    @BindView(R.id.bt_show_dialog)
+    Button btShowDialog;
+    Button btCancleDialog;
 
     int REQUEST_CODE_IMAGE = 0x111;
     @BindView(R.id.image_view_album_image)
@@ -73,17 +87,33 @@ public class OneFragment extends BaseFragmentImpl {
 
     @Override
     public void initData() {
+        btShowDialog = (Button) findView(R.id.bt_show_dialog);
+        btCancleDialog = (Button) findView(R.id.bt_cancle_dialog);
         //这里进行数据的请求操作
+        btShowDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "点击成功", Toast.LENGTH_SHORT).show();
+                mParent.showProgressDialog();
+            }
+        });
+        btCancleDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "点击成功", Toast.LENGTH_SHORT).show();
+                mParent.cancleProgressDialog();
+            }
+        });
     }
 
-    @OnClick({R.id.textView, R.id.button, R.id.button2, R.id.button3,R.id.bt_start_request})
+    @OnClick({R.id.textView, R.id.button, R.id.button2, R.id.button3, R.id.bt_start_request})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.textView:
                 startActivity(OneDragNActivity.class);
                 break;
             case R.id.button://相册
-                RxPermissions repermissiion = new RxPermissions(mParentActivity);
+                RxPermissions repermissiion = new RxPermissions(mParent);
                 repermissiion.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.READ_PHONE_STATE)
@@ -102,26 +132,48 @@ public class OneFragment extends BaseFragmentImpl {
                 break;
             case R.id.button2:
                 //ImageLoaderUtils.getInstance().showImage(imageViewAlbumImage,"https://img3.doubanio.com//view//celebrity//s_ratio_celebrity//public//p45590.webp");
-                progressView.setPayStatus(1);
+                mParent.showProgressDialog();
                 break;
             case R.id.button3:
                 startActivity(OtherActivity.class);
                 break;
             case R.id.bt_start_request:
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://api.douban.com/v2/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .client(OkhttpFactory.genericClient())
+                        .build();
 
+                retrofit.create(IApiNet.class).getDouban("1", "10")
+                        .enqueue(new Callback<DouBanBean>() {
+                            @Override
+                            public void onResponse(Call<DouBanBean> call, Response<DouBanBean> response) {
+                                DouBanBean body = response.body();
+                                LogUtil.d(body.toString());
+                                btStartRequest.setText(body.toString());
+                            }
+
+                            @Override
+                            public void onFailure(Call<DouBanBean> call, Throwable t) {
+                                LogUtil.d(t.toString());
+                            }
+                        });
                 break;
             default:
                 break;
         }
     }
 
+    private void showDialog() {
+
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_IMAGE && resultCode == RESULT_OK) {
-
             Uri uri = data.getData();
-            Cursor cursor = mParentActivity.getContentResolver().query(uri, null, null, null, null);
+            Cursor cursor = mParent.getContentResolver().query(uri, null, null, null, null);
             if (cursor != null && cursor.moveToFirst()) {
                 String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
             }

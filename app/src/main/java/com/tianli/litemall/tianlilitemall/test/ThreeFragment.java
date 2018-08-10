@@ -1,45 +1,83 @@
 package com.tianli.litemall.tianlilitemall.test;
 
-import android.graphics.Path;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-import com.tianli.litemall.common_library.utils.ToastUtil;
 import com.tianli.litemall.tianlilitemall.R;
+import com.tianli.litemall.tianlilitemall.base.contract.BasePresenterImpl;
+import com.tianli.litemall.tianlilitemall.fragment.BaseFragmentImpl;
 import com.tianli.litemall.tianlilitemall.view.MyProgressView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Created by zhoubo30110 on 2018/8/5.
  */
 
-public class ThreeFragment extends Fragment {
+public class ThreeFragment extends BaseFragmentImpl {
 
-    private View mView;
 
-    @Nullable
+    @BindView(R.id.progressView)
+    MyProgressView progressView;
+    @BindView(R.id.button4)
+    Button button4;
+    @BindView(R.id.button5)
+    Button button5;
+    @BindView(R.id.bt_request)
+    Button btRequest;
+    Unbinder unbinder;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mView = LayoutInflater.from(getContext()).inflate(R.layout.activity_other,null);
-        return mView;
+    protected BasePresenterImpl createPresenter() {
+        return null;
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        mView.findViewById(R.id.progressView).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ToastUtil.show(getActivity(),"点击成功");
-                Path path = new Path();
-                path.moveTo(300,300);
-                path.lineTo(300,600);
-                ((MyProgressView)v).setPath(path);
-                v.postInvalidate();
-            }
-        });
+    protected int bindLayout() {
+        return R.layout.activity_other;
+    }
+
+    @Override
+    public void initView() {
+
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        unbinder = ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @OnClick({R.id.button4, R.id.button5, R.id.bt_request})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.button4:
+                mParent.showProgressDialog();
+                break;
+            case R.id.button5:
+                mParent.cancleProgressDialog();
+                break;
+            case R.id.bt_request:
+                break;
+        }
     }
 }

@@ -14,6 +14,7 @@ import com.tianli.litemall.tianlilitemall.base.contract.BaseActivity;
 import com.tianli.litemall.tianlilitemall.base.contract.BasePresenterImpl;
 import com.tianli.litemall.tianlilitemall.base.contract.IBaseContract;
 import com.tianli.litemall.tianlilitemall.model.IBaseModel;
+import com.tianli.litemall.tianlilitemall.view.CommonStateLayout;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -29,7 +30,7 @@ import io.reactivex.disposables.Disposable;
 public abstract class BaseFragmentImpl<P extends BasePresenterImpl, E extends IBaseModel> extends Fragment implements IBasePresenter {
 
     protected P mPresenter;
-    protected BaseActivity mParentActivity;
+    protected BaseActivity mParent;
     protected View mRootView;
     //界面是否已经对用户开始可见
     protected boolean isVisible;
@@ -43,11 +44,13 @@ public abstract class BaseFragmentImpl<P extends BasePresenterImpl, E extends IB
     protected static int FAIL_VIEW = 1;
     protected static int EMPTY_VIEW = 2;
 
+    protected CommonStateLayout mCommonStateLayout;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context != null && context instanceof BaseActivity) {
-            mParentActivity = (BaseActivity) context;
+            mParent = (BaseActivity) context;
         }
     }
 
@@ -81,9 +84,12 @@ public abstract class BaseFragmentImpl<P extends BasePresenterImpl, E extends IB
         if (mRootView == null) {
             mRootView = inflater.inflate(bindLayout(), container, false);
             unbinder = ButterKnife.bind(this, mRootView);
+
+            mCommonStateLayout = new CommonStateLayout(mParent);
+            mCommonStateLayout.bindSuccessView(bindLayout());
             initView();
         }
-        return mRootView;
+        return mCommonStateLayout;
     }
 
     @Override
@@ -127,7 +133,7 @@ public abstract class BaseFragmentImpl<P extends BasePresenterImpl, E extends IB
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ((ViewGroup) mRootView.getParent()).removeView(mRootView);
+        ((ViewGroup) mCommonStateLayout.getParent()).removeView(mCommonStateLayout);
     }
 
     @Override
@@ -194,25 +200,25 @@ public abstract class BaseFragmentImpl<P extends BasePresenterImpl, E extends IB
     }
 
     public void startActivity(Class activity) {
-        Intent intent = new Intent(mParentActivity, activity);
+        Intent intent = new Intent(mParent, activity);
         startActivity(intent);
     }
 
     public void startActivity(Class activity, Bundle bundle) {
-        Intent intent = new Intent(mParentActivity, activity);
+        Intent intent = new Intent(mParent, activity);
         intent.putExtra("data", bundle);
         startActivity(intent);
     }
 
     public void startActivityAndClearTask(Class activity) {
-        Intent intent = new Intent(mParentActivity, activity);
+        Intent intent = new Intent(mParent, activity);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        mParentActivity.finish();
+        mParent.finish();
     }
 
     public void startActivityAndClearTop(Class activity) {
-        Intent intent = new Intent(mParentActivity, activity);
+        Intent intent = new Intent(mParent, activity);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

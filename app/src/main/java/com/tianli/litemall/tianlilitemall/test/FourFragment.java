@@ -1,5 +1,6 @@
 package com.tianli.litemall.tianlilitemall.test;
 
+import android.view.View;
 import android.widget.ViewFlipper;
 
 import com.tianli.litemall.common_library.utils.LogUtil;
@@ -35,7 +36,12 @@ public class FourFragment extends BaseFragmentImpl {
 
     @Override
     public void initView() {
-
+        vlMainFour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mParent.showProgressDialog();
+            }
+        });
     }
 
     @Override
@@ -55,7 +61,7 @@ public class FourFragment extends BaseFragmentImpl {
                 .subscribe(new Consumer<Integer>() {
                     @Override
                     public void accept(@NonNull Integer integer) throws Exception {
-                        LogUtil.d("数字是："+integer);
+                        LogUtil.d("数字是：" + integer);
                     }
                 });
 

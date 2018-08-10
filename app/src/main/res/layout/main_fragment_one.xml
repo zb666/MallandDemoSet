@@ -34,6 +34,18 @@
         android:layout_height="wrap_content"
         android:text="开始网络请求"/>
 
+    <Button
+        android:id="@+id/bt_show_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示Dialog"/>
+
+    <Button
+        android:id="@+id/bt_cancle_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="隐藏Dialog"/>
+
     <ImageView
         android:id="@+id/image_view_album_image"
         android:layout_width="match_parent"
