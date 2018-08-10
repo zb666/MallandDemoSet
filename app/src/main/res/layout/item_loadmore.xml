@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_loadmore"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/alpha_55_black"
+        android:layout_width="0dp"
+        android:layout_height="50dp"/>
+
+    <ImageView
+        android:id="@+id/iv_loadmore"
+        android:src="@drawable/ic_launcher"
+        android:layout_width="@dimen/DIMEN_30_0DP"
+        android:layout_height="@dimen/DIMEN_30_0DP"/>
+</LinearLayout>

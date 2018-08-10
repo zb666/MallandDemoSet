@@ -1,9 +1,13 @@
 package com.tianli.litemall.tianlilitemall.imageutils;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.tianli.litemall.tianlilitemall.R;
 
 /**
 * @Description: 具体实现层
@@ -28,10 +32,14 @@ public class GlideStrategy implements ImageLoaderStrategy{
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void showImage(ImageView imageView, String url) {
+        RequestOptions requestOptions = RequestOptions.centerCropTransform();
+        requestOptions.placeholder(imageView.getContext().getDrawable(R.drawable.no_network_pic));
         Glide.with(imageView.getContext())
                 .load(url)
+                .apply(requestOptions)
                 .into(imageView);
     }
 }

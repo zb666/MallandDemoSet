@@ -25,6 +25,6 @@ public interface IApiNet {
     //https://api.douban.com/v2/movie/top250?start=1&count=10
     @FormUrlEncoded
     @POST("movie/top250")
-    Call<DouBanBean> getDouban(@Field("start") String start, @Field("count") String count);
+    Call<DouBanBean> getDouban(@Field("start") int start, @Field("count") int count);
 
 }

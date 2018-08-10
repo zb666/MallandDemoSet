@@ -69,6 +69,8 @@ dependencies {
     compile 'org.aspectj:aspectjrt:1.8.9'
     //loadingView
     compile 'com.ycjiang:loadviewhelper:1.1.0'
+    //smartRefreshlayout
+    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
     //okgo
     compile 'com.lzy.net:okgo:3.0.4'
     testCompile 'junit:junit:4.12'

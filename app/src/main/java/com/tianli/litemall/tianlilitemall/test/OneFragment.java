@@ -13,14 +13,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.tianli.litemall.common_library.utils.LogUtil;
-import com.tianli.litemall.common_library.utils.OkhttpFactory;
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.activity.OtherActivity;
 import com.tianli.litemall.tianlilitemall.base.contract.BasePresenterImpl;
 import com.tianli.litemall.tianlilitemall.fragment.BaseFragmentImpl;
-import com.tianli.litemall.tianlilitemall.model.DouBanBean;
-import com.tianli.litemall.tianlilitemall.netapi.IApiNet;
 import com.tianli.litemall.tianlilitemall.view.MyProgressView;
 import com.tianli.litemall.tianlilitemall.vlayout.OneDragNActivity;
 
@@ -30,11 +26,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.app.Activity.RESULT_OK;
 import static com.tianli.litemall.tianlilitemall.configinit.LiteMall.getApplicationContext;
@@ -138,26 +129,7 @@ public class OneFragment extends BaseFragmentImpl {
                 startActivity(OtherActivity.class);
                 break;
             case R.id.bt_start_request:
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://api.douban.com/v2/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .client(OkhttpFactory.genericClient())
-                        .build();
 
-                retrofit.create(IApiNet.class).getDouban("1", "10")
-                        .enqueue(new Callback<DouBanBean>() {
-                            @Override
-                            public void onResponse(Call<DouBanBean> call, Response<DouBanBean> response) {
-                                DouBanBean body = response.body();
-                                LogUtil.d(body.toString());
-                                btStartRequest.setText(body.toString());
-                            }
-
-                            @Override
-                            public void onFailure(Call<DouBanBean> call, Throwable t) {
-                                LogUtil.d(t.toString());
-                            }
-                        });
                 break;
             default:
                 break;
