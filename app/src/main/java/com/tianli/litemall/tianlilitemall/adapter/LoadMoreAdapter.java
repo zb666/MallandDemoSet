@@ -33,7 +33,7 @@ public class LoadMoreAdapter extends BaseQuickAdapter<DouBanBean.SubjectsBean,Lo
     @Override
     protected void convert(LoadMoreHolder helper, DouBanBean.SubjectsBean item) {
         helper.setText(R.id.tv_loadmore,item.getTitle());
-        ImageLoaderUtils.getInstance().showImage(helper.ivLoadMore,item.getImages().getMedium());
+        ImageLoaderUtils.getInstance().showImage(helper.ivLoadMore,item.getImages().getSmall());
     }
 
 

@@ -72,7 +72,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPres
     @Override
     protected void initViewData() {
         super.initViewData();
-        mCommonView.showLoadingView();
+        showProgressDialog();
         mPresenter.startTask("XMM");
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
         startShowDisplay();
@@ -80,6 +80,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPres
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         appHandler.sendEmptyMessage(0);
 
+       cancleProgressDialog();
 
 
     }

@@ -35,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by zhoubo30110 on 2018/8/5.
  */
 
-public class ThreeFragment extends BaseFragmentImpl implements BaseQuickAdapter.RequestLoadMoreListener {
+public class ThreeFragment extends BaseFragmentImpl  {
 
 
     @BindView(R.id.progressView)
@@ -70,7 +70,8 @@ public class ThreeFragment extends BaseFragmentImpl implements BaseQuickAdapter.
 
     @Override
     public void initView() {
-
+        String format = String.format("牛逼%s", "10");
+        LogUtil.d(format);
     }
 
     @Override
@@ -80,10 +81,15 @@ public class ThreeFragment extends BaseFragmentImpl implements BaseQuickAdapter.
 
     private void initLoadMoreListener() {
         moreAdapter = new LoadMoreAdapter(R.layout.item_loadmore);
-        moreAdapter.setOnLoadMoreListener(this,recyclerView);
         recyclerView.setAdapter(moreAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(mParent));
-        moreAdapter.disableLoadMoreIfNotFullPage();
+        moreAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                LogUtil.d("触发了 上拉加载更多");
+                doRequest(start++,count);
+            }
+        },recyclerView);
     }
 
     @Override
@@ -129,11 +135,12 @@ public class ThreeFragment extends BaseFragmentImpl implements BaseQuickAdapter.
                         mParent.cancleProgressDialog();
                         LogUtil.d(response.body().toString());
                         DouBanBean douBanBean = response.body();
-                        //数据绑定到界面上
-                        beanList.addAll(douBanBean.getSubjects());
-                        //初始化适配器
-                        //绑定数据到界面上
                         moreAdapter.addData(douBanBean.getSubjects());
+                        LogUtil.d("本次数据加载完毕");
+                        moreAdapter.loadMoreComplete();
+                        if (start == 5) {
+                            moreAdapter.loadMoreEnd();
+                        }
                     }
 
                     @Override
@@ -143,15 +150,4 @@ public class ThreeFragment extends BaseFragmentImpl implements BaseQuickAdapter.
                 });
     }
 
-    @Override
-    public void onLoadMoreRequested() {
-        start++;
-        if (start>=2){
-            //数据加载完毕
-            moreAdapter.loadMoreEnd();
-        }else {
-          doRequest(start,count);
-        }
-
-    }
 }
