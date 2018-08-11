@@ -5,6 +5,17 @@
               android:background="@color/a15104"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+
+       <com.example.cangyigou.marqueeviewdemo.MarqueeView
+           android:id="@+id/marqueeView"
+           android:layout_width="match_parent"
+           android:layout_height="30dp"
+           app:mvAnimDuration="1000"
+           app:mvInterval="5000"
+           app:mvTextColor="#00f"
+           app:mvTextSize="14sp"
+           app:mvSingleLine="true"/>
+
        <ViewFlipper
            android:id="@+id/vl_main_four"
            android:flipInterval="3500"

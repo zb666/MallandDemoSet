@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.tianli.litemall.common_library.interceptor.OkHttpInterceptor;
 import com.tianli.litemall.common_library.utils.LogUtil;
 import com.tianli.litemall.common_library.utils.ToastUtil;
 import com.tianli.litemall.tianlilitemall.R;
@@ -26,6 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -128,8 +130,13 @@ public class ThreeFragment extends BaseFragmentImpl {
 
     private void doRequest(final int start, final int count) {
         if (mApiNet == null) {
+            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                    .addNetworkInterceptor(new OkHttpInterceptor())
+                    .build();
+
             mApiNet = new Retrofit.Builder()
                     .baseUrl("https://api.douban.com/v2/")
+                    .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build().create(IApiNet.class);
         }
