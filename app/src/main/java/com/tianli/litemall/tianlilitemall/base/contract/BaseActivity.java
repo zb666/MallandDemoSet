@@ -139,7 +139,13 @@ public abstract class BaseActivity<V extends IBaseContract.IBaseView, P extends 
     }
 
     public void cancleProgressDialog() {
+        //默认是不可以取消的
+        cancleProgressDialog(false);
+    }
+
+    public void cancleProgressDialog(boolean isCancleable) {
         if (mLoadingDialog != null && mLoadingDialog.isShowing()) {
+            mLoadingDialog.setCancelable(isCancleable);
             mLoadingDialog.dismiss();
         }
     }

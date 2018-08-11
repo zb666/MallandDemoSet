@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.tianli.litemall.common_library.utils.LogUtil;
+import com.tianli.litemall.common_library.utils.ToastUtil;
 import com.tianli.litemall.tianlilitemall.R;
 import com.tianli.litemall.tianlilitemall.adapter.LoadMoreAdapter;
 import com.tianli.litemall.tianlilitemall.base.contract.BasePresenterImpl;
@@ -35,7 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by zhoubo30110 on 2018/8/5.
  */
 
-public class ThreeFragment extends BaseFragmentImpl  {
+public class ThreeFragment extends BaseFragmentImpl {
 
 
     @BindView(R.id.progressView)
@@ -57,6 +58,7 @@ public class ThreeFragment extends BaseFragmentImpl  {
     private LoadMoreAdapter moreAdapter;
 
     List<DouBanBean.SubjectsBean> beanList = new ArrayList<>();
+    private IApiNet mApiNet;
 
     @Override
     protected BasePresenterImpl createPresenter() {
@@ -86,10 +88,11 @@ public class ThreeFragment extends BaseFragmentImpl  {
         moreAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                LogUtil.d("触发了 上拉加载更多");
-                doRequest(start++,count);
+                ToastUtil.showMsg(mParent,"触发了上拉加载更多");
+                doRequest(start++, count);
             }
-        },recyclerView);
+        }, recyclerView);
+
     }
 
     @Override
@@ -124,20 +127,24 @@ public class ThreeFragment extends BaseFragmentImpl  {
     }
 
     private void doRequest(final int start, final int count) {
-        Retrofit build = new Retrofit.Builder()
-                .baseUrl("https://api.douban.com/v2/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        build.create(IApiNet.class).getDouban(start, count)
+        if (mApiNet == null) {
+            mApiNet = new Retrofit.Builder()
+                    .baseUrl("https://api.douban.com/v2/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build().create(IApiNet.class);
+        }
+
+        mApiNet.getDouban(start, count)
                 .enqueue(new Callback<DouBanBean>() {
                     @Override
                     public void onResponse(Call<DouBanBean> call, Response<DouBanBean> response) {
-                        mParent.cancleProgressDialog();
                         LogUtil.d(response.body().toString());
                         DouBanBean douBanBean = response.body();
                         moreAdapter.addData(douBanBean.getSubjects());
                         LogUtil.d("本次数据加载完毕");
+                        //本次数据拉取完毕
                         moreAdapter.loadMoreComplete();
+                        mParent.cancleProgressDialog(true);
                         if (start == 5) {
                             moreAdapter.loadMoreEnd();
                         }

@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity<IMainContract.IMainView, MainPres
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         appHandler.sendEmptyMessage(0);
 
-       cancleProgressDialog();
+        cancleProgressDialog();
 
 
     }
